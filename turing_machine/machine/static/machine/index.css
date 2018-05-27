@@ -1,0 +1,65 @@
+input[type=text] {
+    width: 10%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+body
+{
+  background-color: Navy Blue;
+}
+p[name="red"]{
+	color: red;
+}
+div[name=matrix] {
+	position: absolute;
+	top: 5%;
+}
+
+div[name=mat]{
+	position: absolute;
+	top: 2%;
+}
+h2{
+
+	display: inline;
+	padding-left: 50px;
+	padding-right: 20px;
+}
+
+h2[name="no-pad"]{
+	display: inline;
+	padding-left: none;
+	padding-right: none;
+}
+
+input[name="tape"]{
+	width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+input[name="iter"]{
+	width: 8.5%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+
+div[name="result"]{
+	position: absolute;
+	top: 3%;
+	left: 50%;
+}
+
+p{
+	font-size: 30;
+}
+
+div[name="tape"]{
+	display: inline-block;
+}
+div[name="all"]{
+	display: inline-block;
+}

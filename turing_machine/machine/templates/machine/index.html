@@ -1,0 +1,104 @@
+{%load staticfiles%}
+{% load index %}
+<link rel="stylesheet" href="{% static "machine/index.css" %}" type = "text/css"/>
+
+<!-- <audio autoplay>
+  <source src="machine/kirill.mp3" type="audio/mpeg">
+</audio> -->
+
+<div name="result">
+
+    <p> Результат:</p>
+
+    <p> {%for tape in current_tape%}
+          {{tape}}
+        {%endfor%}
+    </p>
+    {%if step%}
+    <p>Шаг: {{step.iteration}}</p>
+    <p>Состояние: {{step.state}}</p>
+    <p>Команда: {{step.task}}</p>
+    {%for char in step.tape%}
+      <div name="tape">
+        {%if forloop.counter|add:"-1" == step.head_position%}
+        <p name="red">{{char}}</p>
+        {%else%}
+          <p name=>{{char}}</p>
+        {%endif%}
+    </div>
+    {%endfor%}<br>
+    <p>{{finished}}</p>
+    {%endif%}
+
+    {%if tape%}
+      <div name="steps" style="overflow:scroll; height:500px; width:500px;">
+      {%for str in tape%}
+        <p3>{{forloop.counter}}) {{str}}</p><br>
+        <!-- <div name="tape">
+          {%if forloop.counter|add:"-1" == step.head_position%}
+          <p name="red">{{char}}</p>
+          {%else%}
+            <p name=>{{char}}</p> -->
+          {%endif%}
+      {%endfor%}
+      </div>
+    {%endif%}
+
+</div>
+
+
+<div name="mat">
+    <h2 name="title">S_0</h2>
+    <h2 name="title">0</h2>
+    <h2 name="title">1</h2>
+    <h2 name="title">2</h2>
+</div>
+
+
+<div name="matrix">
+<form action="{% url 'machine:t_m' %}" method="post" enctype="multipart/form-data">
+  {%csrf_token%}
+
+
+
+  Q1 <input type="text" name="q1-s_0" value={{a}}>
+  <input type="text" name="q1-0" value={{b}}>
+  <input type="text" name="q1-1" value={{c}}>
+  <input type="text" name="q1-2" value={{d}}><br><br>
+  Q2 <input type="text" name="q2-s_0" value={{e}}>
+  <input type="text" name="q2-0" value={{f}}>
+  <input type="text" name="q2-1" value={{g}}>
+  <input type="text" name="q2-2" value={{h}}><br><br>
+
+  Q3 <input type="text" name="q3-s_0" value={{i}}>
+  <input type="text" name="q3-0"      value={{j}}>
+  <input type="text" name="q3-1" value={{k}}>
+  <input type="text" name="q3-2" value={{l}}><br><br>
+
+  Лента <input type="text" name="tape">
+  Итераций <input type="number" name="iter"><br><br>
+
+  {%if bad_tape_task%}
+    <h1>{{bad_tape_task}}</h1>
+  {%endif%}<br><br>
+
+  <input type="submit" value="Мгновенно" name="Full">
+  <input type="submit" value="Шаг" name="Step">
+  <input type="submit" value="Сбросить" name="Clear"><br><br>
+  <input type="file" name="Prog">
+  <input type="submit" name="File"><br>
+
+{%if input_file_err%}
+  <h1>{{input_file_err}}</h1>
+{%endif%}
+
+{%if iter_err%}
+  <h1>{{iter_err}}</h1>
+{%endif%}
+
+
+
+
+
+</form>
+</div>
